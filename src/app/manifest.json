@@ -1,0 +1,42 @@
+{
+  "background_color": "#000000",
+  "description": "A description for your application",
+  "dir": "auto",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "https://www.pwabuilder.com/assets/icons/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://www.pwabuilder.com/assets/icons/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "lang": " The default language of your application",
+  "name": "The name of your application",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
+      "sizes": "2880x1800",
+      "type": "image/png",
+      "description": "A screenshot of the home page"
+    }
+  ],
+  "short_name": "This name will show in your Windows taskbar, in the start menu, and Android homescreen",
+  "shortcuts": [
+    {
+      "name": "The name you would like to be displayed for your shortcut",
+      "url": "The url you would like to open when the user chooses this shortcut. This must be a URL local to your PWA. For example: If my start_url is /, this URL must be something like /shortcut",
+      "description": "A description of the functionality of this shortcut"
+    }
+  ],
+  "start_url": "The URL that should be loaded when your application is opened",
+  "theme_color": "#000000"
+}
