@@ -1,8 +1,10 @@
+import Link from 'next/link';
+
 import { BookData, BOOKS } from '../booksMetadata';
 
-export default function Chapter({ bookId, content }: { bookId: string; content: BookData }) {
+export default function Chapter({ bookId, chapter, content }: { bookId: string; chapter: number; content: BookData }) {
   return (
-    <div>
+    <main>
       <h1>{BOOKS[bookId].title}</h1>
       {Object.entries(content).map(([verse, text]) => (
         <div key={verse}>
@@ -10,6 +12,16 @@ export default function Chapter({ bookId, content }: { bookId: string; content: 
           <span>{text}</span>
         </div>
       ))}
-    </div>
+
+      {chapter > 1 && (
+        <Link href={`/books/${bookId}/${chapter - 1}`}>
+          <button>Back</button>
+        </Link>
+      )}
+
+      <Link href={`/books/${bookId}/${chapter + 1}`}>
+        <button>Next</button>
+      </Link>
+    </main>
   );
 }

@@ -19,5 +19,7 @@ export default async function BookChapter(props: PageProps) {
     return null;
   }
 
-  return <Chapter bookId={chapterParams.book} content={bookData} />;
+  const chapter = parseInt(chapterParams.chapter, 10);
+
+  return <Chapter bookId={chapterParams.book} chapter={chapter} content={bookData} />;
 }

@@ -23,4 +23,6 @@ const serwist = new Serwist({
   runtimeCaching: defaultCache,
 });
 
+serwist.addToPrecacheList(['/', '/books']);
+
 serwist.addEventListeners();
