@@ -1,5 +1,7 @@
 # PWA + NextJs + Dynamic Routes
 
+# [DEMO](https://testpwanextjsofflinejsons-git-main-guilatrovas-projects.vercel.app/?vercelToolbarCode=oUDH--7kYjnR8TD)
+
 This project intents to show to precache json files and handle dynamic routes gracefully.
 
 ### JSON Data
