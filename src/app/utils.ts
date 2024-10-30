@@ -27,6 +27,7 @@ export async function getBookChapterServerSide({ book, chapter }: ChapterParams)
   return bookData;
 }
 
+// Not being used - how to use in PWA?
 const HTTP_URL_PREFIX = path.join(process.cwd(), 'json/data/books');
 
 export async function getBookChapterClientSide({ book, chapter }: ChapterParams): Promise<BookData> {
