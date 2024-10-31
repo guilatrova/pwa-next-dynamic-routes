@@ -43,4 +43,3 @@ Feature implemented in [utils](./src/app/utils.ts):
 How to precache the json files (easy actually), but still handle the dynamic chapter page?
 
 Somehow on **OFFLINE mode** visiting http://localhost:3000/books/a/3 -> render `Chapter` component -> pulls JSON data from cache.
-
