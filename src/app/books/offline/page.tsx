@@ -1,13 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-import ClientChapter from './OfflineClientChapter';
+const DynamicComponentWithNoSSR = dynamic(() => import('./OfflineClientChapter'), { ssr: false });
 
 export default function OfflineBookChapter() {
   return (
     <Suspense>
-      <ClientChapter />
+      <DynamicComponentWithNoSSR />
     </Suspense>
   );
 }

@@ -39,6 +39,27 @@ self.addEventListener('install', (event) => {
   );
 });
 
+const CACHE_DEMAND_CMD = 'cache-on-demand';
+const CACHE_DEMAND_GROUP = 'book-assets';
+
+self.addEventListener('message', async (event) => {
+  if (event.data.action === CACHE_DEMAND_CMD) {
+    const bookId = event.data.param;
+    const cache = await caches.open(CACHE_DEMAND_GROUP);
+    const chaptersToCache = [1, 2];
+
+    for (const chapter of chaptersToCache) {
+      const jsonUrl = `json/data/books/${bookId}/${chapter}.json`;
+      const isCached = await cache.match(jsonUrl);
+      if (!isCached) {
+        const res = await fetch(jsonUrl);
+        await cache.put(jsonUrl, res);
+      }
+    }
+  }
+  event.ports[0].postMessage(true);
+});
+
 serwist.setCatchHandler(async ({ event, request, url }) => {
   if (request.destination === 'document' && url.origin === location.origin && url.pathname.startsWith('/books')) {
     const match = serwist.handleRequest({ event, request: new Request('/books/offline') });
