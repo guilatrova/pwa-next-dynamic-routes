@@ -23,7 +23,7 @@ const serwist = new Serwist({
   runtimeCaching: defaultCache,
 });
 
-const DEFAULT_URLS = ['/', '/books/offline'] as const;
+const DEFAULT_URLS = ['/', '/books/offline'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
