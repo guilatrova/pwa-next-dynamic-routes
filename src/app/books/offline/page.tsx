@@ -1,27 +1,13 @@
-import { BookData } from '@/app/booksMetadata';
-import Chapter from '@/app/components/Chapter';
-import { ChapterParams, getBookChapterClientSide } from '@/app/utils';
+'use client';
 
-type PageProps = {
-  searchParams: Promise<ChapterParams>;
-};
+import { Suspense } from 'react';
 
-export default async function OfflineBookChapter(props: PageProps) {
-  const chapterParams = await props.searchParams;
-  let bookData: BookData;
+import ClientChapter from './OfflineClientChapter';
 
-  try {
-    bookData = await getBookChapterClientSide(chapterParams);
-  } catch (err) {
-    console.error(err);
-    return (
-      <p>
-        Not found book data for: {chapterParams.book} ch {chapterParams.chapter}
-      </p>
-    );
-  }
-
-  const chapter = parseInt(chapterParams.chapter, 10);
-
-  return <Chapter bookId={chapterParams.book} chapter={chapter} content={bookData} />;
+export default function OfflineBookChapter() {
+  return (
+    <Suspense>
+      <ClientChapter />
+    </Suspense>
+  );
 }

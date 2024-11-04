@@ -23,6 +23,28 @@ const serwist = new Serwist({
   runtimeCaching: defaultCache,
 });
 
-serwist.addToPrecacheList(['/']);
+const urlsToCache = ['/', '/books/offline'];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    Promise.all(
+      urlsToCache.map((entry) => {
+        const request = serwist.handleRequest({
+          request: new Request(entry),
+          event,
+        });
+        return request;
+      })
+    )
+  );
+});
+
+serwist.setCatchHandler(async ({ event, request, url }) => {
+  if (request.destination === 'document' && url.origin === location.origin && url.pathname.startsWith('/books')) {
+    const match = serwist.handleRequest({ event, request: new Request('/books/offline') });
+    return match ? await match : Response.error();
+  }
+  return Response.error();
+});
 
 serwist.addEventListeners();
