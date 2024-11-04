@@ -28,10 +28,11 @@ export async function getBookChapterServerSide({ book, chapter }: ChapterParams)
 }
 
 // Not being used - how to use in PWA?
-const HTTP_URL_PREFIX = path.join(process.cwd(), 'json/data/books');
+const HTTP_URL_PREFIX = 'http://localhost:3000/json/data/books';
 
 export async function getBookChapterClientSide({ book, chapter }: ChapterParams): Promise<BookData> {
-  const response = await fetch(`${HTTP_URL_PREFIX}/${book}/${chapter}.json`);
+  const url = `${HTTP_URL_PREFIX}/${book}/${chapter}.json`;
+  const response = await fetch(url);
   const bookData = await response.json();
 
   return bookData;
