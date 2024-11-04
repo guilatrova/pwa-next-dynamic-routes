@@ -17,3 +17,15 @@ export async function getBookChapterClientSide({ book, chapter }: ChapterParams)
 
   return bookData;
 }
+
+export async function loadCacheChapter({ book, chapter }: { book: string; chapter: string }): Promise<BookData | null> {
+  const cache = await caches.open('book-assets');
+  const jsonUrl = `/json/data/books/${book}/${chapter}.json`;
+
+  const cacheResp = await cache.match(jsonUrl);
+  if (!cacheResp) {
+    return null;
+  }
+
+  return cacheResp.json();
+}

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Page() {
@@ -12,27 +11,15 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <h1>Cache content on demand!</h1>
-      <p>Clicking the button will cache an image available at &apos;images/cache-me-outside.jpg&apos;</p>
-      <p>
-        Try clicking it, and then navigating to the image page when you are offline. The page is prefetched and the
-        image is cached so you will be able to see it.
-      </p>
-      <button onClick={cacheContent} className="mt-2">
-        Cache an image
-      </button>
+    <main>
+      <h1>Cache book content on demand!</h1>
+      <p>Clicking the button will cache b1 chapters 1 and 2</p>
+      <button onClick={cacheContent}>Cache book</button>
       {isComplete && (
         <>
-          <p>Image cached!</p>
-          <span>
-            Go offline and navigate to{' '}
-            <Link href="/cache-on-demand/cached" className="inline-block">
-              image page
-            </Link>
-          </span>
+          <p>Book cached cached!</p>
         </>
       )}
-    </div>
+    </main>
   );
 }

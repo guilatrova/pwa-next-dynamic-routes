@@ -5,6 +5,8 @@ import { BOOKS } from './booksMetadata';
 export default function BooksIndex() {
   return (
     <main>
+      <Link href="/books/cache">Cache manually for offline reading</Link>
+
       <h1>Books</h1>
       {Object.entries(BOOKS).map(([bookId, bookData]) => (
         <div key={bookId}>

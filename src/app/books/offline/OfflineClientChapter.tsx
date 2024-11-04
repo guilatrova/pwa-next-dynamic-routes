@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { BookData } from '@/app/booksMetadata';
 import Chapter from '@/app/components/Chapter';
-import { getBookChapterClientSide } from '@/app/offlineUtils';
+import { loadCacheChapter } from '@/app/offlineUtils';
 
 export default function ClientChapter() {
   const pathname = usePathname();
@@ -32,7 +32,7 @@ export default function ClientChapter() {
       return;
     }
 
-    getBookChapterClientSide({ book, chapter: rawChapter })
+    loadCacheChapter({ book, chapter: rawChapter })
       .then(setBookData)
       .catch(() => setError("Couldn't load book chapter"))
       .finally(() => setLoading(false));
@@ -50,8 +50,12 @@ export default function ClientChapter() {
     return <div>Error: {error.toString()}</div>;
   }
 
-  if (loading || !bookData) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (bookData === null) {
+    return <div>Chapter not found</div>;
   }
 
   return <Chapter bookId={book} chapter={chapter} content={bookData} />;
