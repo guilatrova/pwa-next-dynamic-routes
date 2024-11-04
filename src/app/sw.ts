@@ -23,12 +23,12 @@ const serwist = new Serwist({
   runtimeCaching: defaultCache,
 });
 
-const urlsToCache = ['/', '/books/offline'];
+const DEFAULT_URLS = ['/', '/books/offline'] as const;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     Promise.all(
-      urlsToCache.map((entry) => {
+      DEFAULT_URLS.map((entry) => {
         const request = serwist.handleRequest({
           request: new Request(entry),
           event,
