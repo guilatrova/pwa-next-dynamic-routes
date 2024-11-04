@@ -1,5 +1,6 @@
-import { defaultCache } from '@serwist/next/worker';
 import { Serwist } from 'serwist';
+
+import { CUSTOM_CACHE } from './serviceWorker/caching';
 
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
 
@@ -20,7 +21,7 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: CUSTOM_CACHE,
 });
 
 const DEFAULT_URLS = ['/', '/books/offline'];
